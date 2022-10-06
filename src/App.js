@@ -1,24 +1,32 @@
-import logo from './logo.svg';
+import Home from './pages/Home/Home'
+import Indicators from './pages/Indicators/Indicators'
+import People from './pages/People/People'
+import Structures from './pages/Structures/Structures'
+import Menu from './components/Menu/Menu'
+
+import Grid from '@mui/material/Grid';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Grid container spacing={2} style={{marginTop:'20px',textAlign:'center'}}>
+        <Grid item xs={2} style={{paddingTop:'0'}} >
+          <Menu/>
+        </Grid>
+        <Grid item xs={10} style={{backgroundColor:'lightgrey'}}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/people" element={<People />} />
+            <Route path="/structures" element={<Structures />} />
+            <Route path="/indicators" element={<Indicators />} />
+          </Routes>
+        </Grid>
+      </Grid>
+        
+      
+    </BrowserRouter>
   );
 }
 
