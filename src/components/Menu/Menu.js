@@ -1,14 +1,12 @@
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
-
-import Paper from '@mui/material/Paper';
 import { Link } from "react-router-dom";
 
 function Menu() {
     return(
         <>             
-            <Paper style={{height:'300px',backgroundColor:'beige'}}>
-                <MenuList
+            <div style={{height:400,backgroundColor:'beige'}}>
+                <MenuList style={{height:'100%',textAlign:'center'}}
                     id="composition-menu"
                     aria-labelledby="composition-button"
                 >   
@@ -16,7 +14,7 @@ function Menu() {
                         <MenuItem>Home</MenuItem>
                     </Link>
                     <Link to="/People" style={{ textDecoration: 'none', display: 'block',color:'black' }}>
-                        <MenuItem>People</MenuItem>
+                        <MenuItem>Pessoas</MenuItem>
                     </Link>
                     <Link to="/Structures" style={{ textDecoration: 'none', display: 'block',color:'black' }}>
                         <MenuItem>Estruturas</MenuItem>
@@ -25,7 +23,7 @@ function Menu() {
                         <MenuItem>Indicadores</MenuItem>
                     </Link>
                 </MenuList>
-            </Paper>
+            </div>
             
         </>
     );
