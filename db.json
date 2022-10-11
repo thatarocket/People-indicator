@@ -1,5 +1,5 @@
 {
-  "rows": [
+  "structures": [
     {
       "id": 0,
       "level": 1,
@@ -27,13 +27,26 @@
       "code": 4,
       "name": "Arya",
       "currentCicle": 16
+    }
+  ],
+  "cadastro": [
+    {
+      "id": 1,
+      "estruturaId": 3,
+      "nome": "Michael Scott",
+      "idade": 42
     },
     {
-      "id": 4,
-      "level": 9,
-      "code": 6,
-      "name": "Thais",
-      "currentCicle": 16
+      "id": 2,
+      "estruturaId": 2,
+      "nome": "Dwight Schrute",
+      "idade": 39
+    },
+    {
+      "id": 3,
+      "estruturaId": 0,
+      "nome": "Jim Halpert",
+      "idade": 37
     }
   ]
 }
