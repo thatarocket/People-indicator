@@ -2,8 +2,21 @@ import Header from "../../components/Header/Header";
 import { DataGrid } from '@mui/x-data-grid';
 import * as React from 'react';
 import Box from '@mui/material/Box';
+import { useEffect,useState } from 'react'
+import { getStructures } from "../../api/structureApi";
 
 function Structures(props) {
+
+    const [structures, setStructures] = useState([]);
+
+    const getAllStructures = async () => {
+        const allStructures = await getStructures();
+        if(allStructures) setStructures(allStructures);
+    };   
+    
+    useEffect(() => {         
+        getAllStructures(); 
+    }, []);
 
     const columns = [
         { 
@@ -32,7 +45,7 @@ function Structures(props) {
             "width": 130
         }
     ]
-
+    
     return(
         <>
             <Header 
@@ -41,7 +54,7 @@ function Structures(props) {
             <Box sx={{ height: 400, width: '100%' }}>
                 <DataGrid
                     style={{backgroundColor:'white'}}
-                    rows={props.structures}
+                    rows={structures}
                     columns={columns}
                 />
             </Box>
