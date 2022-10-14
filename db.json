@@ -4,32 +4,39 @@
       "id": 0,
       "level": 1,
       "code": 1,
-      "name": "Jon",
+      "name": "Brazil",
       "currentCicle": 35
     },
     {
       "id": 1,
       "level": 2,
       "code": 2,
-      "name": "Cersei",
+      "name": "Scranton",
       "currentCicle": 42
     },
     {
       "id": 2,
       "level": 3,
       "code": 3,
-      "name": "Jaime",
+      "name": "Kingsland",
       "currentCicle": 45
     },
     {
       "id": 3,
       "level": 4,
       "code": 4,
-      "name": "Arya",
+      "name": "Norway",
       "currentCicle": 16
+    },
+    {
+      "id": 4,
+      "level": 4,
+      "code": 4,
+      "name": "Londres",
+      "currentCicle": 20
     }
   ],
-  "cadastro": [
+  "people": [
     {
       "id": 1,
       "estruturaId": 3,
@@ -47,6 +54,18 @@
       "estruturaId": 0,
       "nome": "Jim Halpert",
       "idade": 37
+    },
+    {
+      "id": 4,
+      "estruturaId": 1,
+      "nome": "Pam Beesly",
+      "idade": 38
+    },
+    {
+      "id": 5,
+      "estruturaId": 4,
+      "nome": "Andy Bernard",
+      "idade": 41
     }
   ]
 }

@@ -13,7 +13,7 @@ function Menu() {
                     <Link to="/" style={{ textDecoration: 'none', display: 'block',color:'black' }}>
                         <MenuItem>Home</MenuItem>
                     </Link>
-                    <Link to="/People" style={{ textDecoration: 'none', display: 'block',color:'black' }}>
+                    <Link to="/people" style={{ textDecoration: 'none', display: 'block',color:'black' }}>
                         <MenuItem>Pessoas</MenuItem>
                     </Link>
                     <Link to="/Structures" style={{ textDecoration: 'none', display: 'block',color:'black' }}>

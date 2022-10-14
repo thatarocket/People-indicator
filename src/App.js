@@ -6,28 +6,9 @@ import Menu from './components/Menu/Menu'
 
 import Grid from '@mui/material/Grid';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import api from './components/api/structure'
-import { useEffect,useState } from 'react'
-import './App.css';
+
 
 function App() {
-
-  const [structures, setStructures] = useState([]);
-
-  //Pegar dados de estrutura
-  const getStructures = async () => {
-    const response = await api.get('/structures');
-    return response.data;
-  }
-
-  useEffect(() => {
-    const getAllStructures = async () => {
-      const allStructures = await getStructures();
-      if(allStructures) setStructures(allStructures);
-    };
-    getAllStructures(); 
-  }, []);
-
 
   return (
     <BrowserRouter>
@@ -38,11 +19,11 @@ function App() {
         <Grid item xs={10} sm={8} md={10} style={{backgroundColor:'lightgrey',padding:'0'}}>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/people" element={<People />} />
+            <Route path="/people" element={
+              <People/>} 
+            />
             <Route path="/structures" element={
-              <Structures 
-                structures={structures}
-              />}             
+              <Structures/>}             
             />
             <Route path="/indicators" element={<Indicators />} />
           </Routes>
