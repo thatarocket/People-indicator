@@ -6,7 +6,7 @@ const getPeople = async () => {
 }
 
 const addPerson = async (request) => {
-    await api.post(`/people,${request}`);
+    await api.post("/people",request);
     getPeople();
 }
 
