@@ -7,17 +7,15 @@ const getPeople = async () => {
 
 const addPerson = async (request) => {
     await api.post("/people",request);
+}
+
+const deletePerson = async (id) => {
+    await api.delete(`/people/${id}`); 
+}
+
+const editPerson = async (personToEdit) => {
+    await api.put(`/people/${personToEdit.id}`, personToEdit);
     getPeople();
 }
 
-// const deletePerson = async (id) => {
-//     await api.delete(`/people/${id}`);
-//     getPeople();   
-// }
-
-// const editPerson = async (personToEdit) => {
-//     await api.put(`/people/${personToEdit.id}`, personToEdit);
-//     getPeople();
-// }
-
-export {getPeople, addPerson};
+export {getPeople, addPerson, deletePerson,editPerson};

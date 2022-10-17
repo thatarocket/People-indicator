@@ -36,9 +36,16 @@ function TablePeople(props) {
         { field: 'operacao', headerName: 'Operação', width: 250,
             renderCell: ({row}) => {
                 return (() => ActionButtons(
-                    {
+                    {   
                         row,
-                        props
+                        handleOpen: props.handleOpen,
+                        handleClose: props.handleClose,
+                        open: props.open,
+                        listStructures: props.listStructures,
+                        listPeople: props.listPeople,
+                        deletePerson: props.deletePerson,
+                        handleDelete: props.handleDelete,
+                        handleEdit: props.handleEdit
                     }
                 ))();
             }

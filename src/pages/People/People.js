@@ -2,7 +2,7 @@ import Header from "../../components/Header/Header";
 import TablePeople from "../../components/TablePeople/TablePeople";
 import AddPerson from "../../components/AddPerson/AddPerson";
 import { useState, useEffect } from "react";
-import {getPeople,addPerson} from "../../api/peopleApi";
+import {getPeople,addPerson, deletePerson} from "../../api/peopleApi";
 import {getStructures} from "../../api/structureApi";
 
 function People(props) {
@@ -13,23 +13,25 @@ function People(props) {
     //Campos para preencher
     const[name,setName] = useState("");
     const[age,setAge] = useState(0);   
-    const[structure,setStructure] = useState(0);
+    const[structure,setStructure] = useState("");
     // Referentes ao people e structures do Json
     const[listPeople,setPeople] = useState([]);
     const [listStructures, setStructures] = useState([]);
 
-    useEffect(() => {     
-        const getAllStructures = async () => {
-            const allStructures = await getStructures();
-            if(allStructures) setStructures(allStructures);
-        };    
-        const getAllPeople = async () => {
-            const allRegisters = await getPeople();
-            if(allRegisters) setPeople(allRegisters);
-        };   
+    const getAllStructures = async () => {
+        const allStructures = await getStructures();
+        if(allStructures) setStructures(allStructures);
+    };    
+    const getAllPeople = async () => {
+        const allRegisters = await getPeople();
+        if(allRegisters) setPeople(allRegisters);
+    }; 
+
+    useEffect(() => {   
         getAllStructures(); 
         getAllPeople();
     }, []);
+
 
     // Modal
     const handleOpen = () => {
@@ -39,11 +41,26 @@ function People(props) {
         setOpen(false);
     }
 
+    const handleAdd = async (objectPerson) => {
+        await addPerson(objectPerson);
+        await getAllPeople();
+    }
+
+    const handleDelete = async (id) => {
+        await deletePerson(id);
+        await getAllPeople();
+        setOpen(false);
+    }
+    ////////////////////////
     const handleEdit = (row) => {
-        setName(row.name);
-        setAge(row.age);    
+        setName(row.nome);
+        setAge(row.idade);    
         setEditing(true);
-        setStructure("");
+        if(listPeople && listStructures) {
+            if(listStructures[row.estruturaId]) {
+                setStructure(listStructures[row.estruturaId].name);
+            }
+        }
     }  
 
     const handleCancel = () => {
@@ -71,7 +88,7 @@ function People(props) {
                 listStructures = {listStructures}
                 handleEdit={handleEdit}
                 handleCancel={handleCancel}
-                addPerson = {addPerson}
+                handleAdd = {handleAdd}
             />
             <TablePeople 
                 handleOpen = {handleOpen}
@@ -79,7 +96,8 @@ function People(props) {
                 open = {open}
                 listStructures = {listStructures}
                 listPeople={listPeople}
-                
+                handleDelete={handleDelete}
+                handleEdit={handleEdit}                
             />
 
         </>

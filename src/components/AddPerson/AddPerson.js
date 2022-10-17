@@ -69,7 +69,7 @@ function AddPerson(props) {
                             size="large" 
                             className="btnAddPeople" 
                             variant="outlined" 
-                            onClick={() => props.addPerson(objPerson)}
+                            onClick={() => props.handleAdd(objPerson)}
                         >
                             Adicionar
                         </Button>   
