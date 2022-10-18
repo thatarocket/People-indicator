@@ -14,8 +14,8 @@ const deletePerson = async (id) => {
 }
 
 const editPerson = async (personToEdit) => {
+    
     await api.put(`/people/${personToEdit.id}`, personToEdit);
-    getPeople();
 }
 
 export {getPeople, addPerson, deletePerson,editPerson};

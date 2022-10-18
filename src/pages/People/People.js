@@ -2,7 +2,7 @@ import Header from "../../components/Header/Header";
 import TablePeople from "../../components/TablePeople/TablePeople";
 import AddPerson from "../../components/AddPerson/AddPerson";
 import { useState, useEffect } from "react";
-import {getPeople,addPerson, deletePerson} from "../../api/peopleApi";
+import {getPeople,addPerson, deletePerson, editPerson} from "../../api/peopleApi";
 import {getStructures} from "../../api/structureApi";
 
 function People(props) {
@@ -11,6 +11,7 @@ function People(props) {
     const [open, setOpen] = useState(false);
     const[editing,setEditing] = useState(false); 
     //Campos para preencher
+    const[id,setId] = useState(0);
     const[name,setName] = useState("");
     const[age,setAge] = useState(0);   
     const[structure,setStructure] = useState("");
@@ -44,6 +45,10 @@ function People(props) {
     const handleAdd = async (objectPerson) => {
         await addPerson(objectPerson);
         await getAllPeople();
+        setEditing(false);
+        setName("");
+        setAge(0);   
+        setStructure("");   
     }
 
     const handleDelete = async (id) => {
@@ -51,19 +56,37 @@ function People(props) {
         await getAllPeople();
         setOpen(false);
     }
+
+    const handleCancel = () => {
+        setEditing(false);
+        setName("");
+        setAge(0);   
+        setStructure("");   
+    }
+
     ////////////////////////
     const handleEdit = (row) => {
+        setId(row.id);
         setName(row.nome);
         setAge(row.idade);    
         setEditing(true);
         if(listPeople && listStructures) {
-            if(listStructures[row.estruturaId]) {
-                setStructure(listStructures[row.estruturaId].name);
-            }
-        }
+            const result = (listStructures.find(structure => structure.id === row.estruturaId));
+            console.log(result);
+            if(result === undefined) setStructure("");
+            else setStructure(result.id);        
+        }        
     }  
 
-    const handleCancel = () => {
+    const saveEdit = async () => {
+        let obj = {
+            id:id,
+            estruturaId: structure,
+            nome: name,
+            idade: age
+        }
+        await editPerson(obj);
+        await getAllPeople();
         setEditing(false);
         setName("");
         setAge(0);   
@@ -89,6 +112,7 @@ function People(props) {
                 handleEdit={handleEdit}
                 handleCancel={handleCancel}
                 handleAdd = {handleAdd}
+                saveEdit = {saveEdit}
             />
             <TablePeople 
                 handleOpen = {handleOpen}

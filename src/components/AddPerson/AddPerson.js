@@ -60,6 +60,7 @@ function AddPerson(props) {
                         type="number"
                         value={props.age}
                         onChange={event => props.setAge(event.target.value)}
+                        
                     />
                 </Grid>
 
@@ -73,6 +74,7 @@ function AddPerson(props) {
                         >
                             Adicionar
                         </Button>   
+                        
                     )}   
                     {props.editing && (
                         <>
@@ -86,7 +88,7 @@ function AddPerson(props) {
                             <Button 
                                 size="large" 
                                 variant="outlined" 
-                                // onClick={props.editPerson}
+                                onClick={() => props.saveEdit()}
                             >
                                 Salvar
                             </Button> 
