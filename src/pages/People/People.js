@@ -64,7 +64,6 @@ function People(props) {
         setStructure("");   
     }
 
-    ////////////////////////
     const handleEdit = (row) => {
         setId(row.id);
         setName(row.nome);
