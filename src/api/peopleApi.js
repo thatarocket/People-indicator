@@ -5,6 +5,11 @@ const getPeople = async () => {
     return response.data;
 }
 
+const getPerson = async (id) => {
+    const response = await api.get(`/people/${id}`);
+    return response.data;
+}
+
 const addPerson = async (request) => {
     await api.post("/people",request);
 }
@@ -18,4 +23,4 @@ const editPerson = async (personToEdit) => {
     await api.put(`/people/${personToEdit.id}`, personToEdit);
 }
 
-export {getPeople, addPerson, deletePerson,editPerson};
+export {getPeople, getPerson, addPerson, deletePerson,editPerson};
