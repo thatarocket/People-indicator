@@ -41,93 +41,114 @@
       "id": 1,
       "estruturaId": 3,
       "nome": "Michael Scott",
-      "idade": 42,
-      "indicadores": [
-        {
-          "id": 1,
-          "nome": "Atividade",
-          "valor": 10
-        },
-        {
-          "id": 2,
-          "nome": "Disponibilidade",
-          "valor": 20
-        },
-        {
-          "id": 3,
-          "nome": "Faturamento",
-          "valor": 30
-        }
-      ]
+      "idade": 49
     },
     {
       "id": 2,
       "estruturaId": 2,
       "nome": "Dwight Schrute",
-      "idade": 39,
-      "indicadores": [
-        {
-          "id": 1,
-          "nome": "Atividade",
-          "valor": 20
-        },
-        {
-          "id": 2,
-          "nome": "Disponibilidade",
-          "valor": 30
-        },
-        {
-          "id": 3,
-          "nome": "Faturamento",
-          "valor": 40
-        }
-      ]
+      "idade": 39
     },
     {
       "id": 3,
       "estruturaId": 0,
       "nome": "Jim Halpert",
-      "idade": 37,
-      "indicadores": [
-        {
-          "id": 1,
-          "nome": "Atividade",
-          "valor": 30
-        },
-        {
-          "id": 2,
-          "nome": "Disponibilidade",
-          "valor": 40
-        },
-        {
-          "id": 3,
-          "nome": "Faturamento",
-          "valor": 50
-        }
-      ]
+      "idade": 37
     },
     {
       "id": 4,
       "estruturaId": 1,
       "nome": "Pam Beesly",
-      "idade": "36",
-      "indicadores": [
-        {
-          "id": 1,
-          "nome": "Atividade",
-          "valor": 40
-        },
-        {
-          "id": 2,
-          "nome": "Disponibilidade",
-          "valor": 50
-        },
-        {
-          "id": 3,
-          "nome": "Faturamento",
-          "valor": 60
-        }
-      ]
+      "idade": "36"
+    }
+  ],
+  "indicators": [
+    {
+      "id": 1,
+      "idPessoa":1,
+      "nome": "Atividade",
+      "valor": 20
+    },
+    {
+      "id": 2,
+      "idPessoa":1,
+      "nome": "Disponibilidade",
+      "valor": 10
+    },
+    {
+      "id": 3,
+      "idPessoa":1,
+      "nome": "Faturamento",
+      "valor":80
+    },
+    {
+      "id": 1,
+      "nome": "Atividade",
+      "valor": 20
+    },
+    {
+      "id": 2,
+      "nome": "Disponibilidade",
+      "valor": 30
+    },
+    {
+      "id": 3,
+      "nome": "Faturamento",
+      "valor": 40
+    },
+    {
+      "id": 1,
+      "idPessoa":2,
+      "nome": "Atividade",
+      "valor": 20
+    },
+    {
+      "id": 2,
+      "idPessoa":2,
+      "nome": "Disponibilidade",
+      "valor": 30
+    },
+    {
+      "id": 3,
+      "idPessoa":2,
+      "nome": "Faturamento",
+      "valor": 40
+    },
+    {
+      "id": 1,
+      "idPessoa":3,
+      "nome": "Atividade",
+      "valor": 30
+    },
+    {
+      "id": 2,
+      "idPessoa":3,
+      "nome": "Disponibilidade",
+      "valor": 40
+    },
+    {
+      "id": 3,
+      "idPessoa":3,
+      "nome": "Faturamento",
+      "valor": 50
+    },
+    {
+      "id": 1,
+      "idPessoa":4,
+      "nome": "Atividade",
+      "valor": 40
+    },
+    {
+      "id": 2,
+      "idPessoa":4,
+      "nome": "Disponibilidade",
+      "valor": 50
+    },
+    {
+      "id": 3,
+      "idPessoa":4,
+      "nome": "Faturamento",
+      "valor": 60
     }
   ]
 }
