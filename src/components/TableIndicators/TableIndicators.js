@@ -19,12 +19,9 @@ function TableIndicators(props) {
                 return (() => ActionButtons(
                     {   
                         row,
-                        handleOpen: props.handleOpen,
+                        handleOpen: props.handleOpen,                        
                         handleClose: props.handleClose,
-                        open: props.open,
-                        listStructures: props.listStructures,
-                        listPeople: props.listPeople,
-                        deletePerson: props.deletePerson,
+                        open: props.open,                       
                         handleDelete: props.handleDelete,
                         handleEdit: props.handleEdit
                     }
@@ -39,7 +36,7 @@ function TableIndicators(props) {
                 <Box sx={{ height: 400, width: '100%' }}>
                     <DataGrid
                         style={{backgroundColor:'white'}}
-                        rows={props.indicadores}
+                        rows={props.indicPerson}
                         columns={columns}
                     />
                 </Box>

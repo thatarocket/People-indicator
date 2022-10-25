@@ -1,32 +1,55 @@
+import {useState,useEffect} from "react";
+import {getPerson} from "../../api/peopleApi";
+import {getIndicators,addIndicator,deleteIndicator,editIndicator} from "../../api/indicatorsApi"
+
 import Header from "../../components/Header/Header";
 import SearchID from "../../components/SearchID/SearchID";
-import {useState,useEffect} from "react";
-import {getPeople} from "../../api/peopleApi";
 import AddIndicator from "../../components/AddIndicator/AddIndicator";
 import TableIndicators from "../../components/TableIndicators/TableIndicators";
 
 function Indicators() {
 
+    //Search person
     const[id,setId] = useState(0);
-    const[listPeople,setPeople] = useState([]);
-    const[indicadores,setIndicadores] = useState([]);
-    const[nome,setNome] = useState("");
+    const[person,setPerson] = useState({});
+    const[indicPerson,setIndicPerson] = useState([]); //indicadores da pessoa
+    const[nomePerson,setNomePerson] = useState("");
+
+    //show itens
     const[adicionavel,setAdicionavel] = useState(false);
+
+    //indicadores
+    const[indicadores,setIndicadores] = useState([]);
+    
+    const[editing,setEditing] = useState(false); 
+
+    //TableIndicator
+    
+    
     const[indicador,setIndicador] = useState("");
     const[valor,setValor] = useState(0);
-
     const [open, setOpen] = useState(false);
 
-    const getAllPeople = async () => {
-        const allRegisters = await getPeople();
-        if(allRegisters) setPeople(allRegisters);
+    const getOnePerson = async (id) => {
+        const register = await getPerson(id);
+        if(register) {
+            setPerson(register);  
+            return register;  
+        }    
+        else return null;
     }; 
 
+    const getAllIndicators = async (id) => {
+        const allIndicators = await getIndicators();
+        if(allIndicators) setIndicadores(allIndicators);
+        return allIndicators;
+    }
+
     useEffect(() => {
-        getAllPeople();
+        getAllIndicators();
     }, []);
 
-     // Modal
+    // Modal
     const handleOpen = () => {
         setOpen(true); 
     }
@@ -34,64 +57,69 @@ function Indicators() {
         setOpen(false);
     }
 
-    const handleSearch = async (id) => {
-        await getAllPeople();
-        const idNumber = Number(id);
-        const result = (listPeople.find(person => person.id === idNumber));    
+    // PROBLEMA: Dando erro quando não encontra o id
+    const handleSearch = async (id) => { 
+        const result = await getOnePerson(id);
         if(!result) {
             alert("ID não encontrado");
             setAdicionavel(false);
         }
         else {
-            setIndicadores(result.indicadores);
-            setNome(result.nome);
+            const idNumber = parseInt(id);
+            const indicadores = await getAllIndicators();
+            let indicPerson = []; 
+
+            if(indicadores) {
+                for(let i = 0; i < indicadores.length; i++) {           
+                    if(indicadores[i].idPessoa === idNumber) {
+                        indicPerson.push(indicadores[i]);
+                    }
+                }
+            }
+            setIndicPerson(indicPerson);
+            setNomePerson(result.nome);
             setAdicionavel(true);
-        }
+        }  
     }
 
-    const handleAdd = async() => {
-        
+    const handleAdd = async(objectIndicator) => {
+        await addIndicator(objectIndicator);
+        await getAllIndicators();
+        setEditing(false);
+        setIndicador("");
+        setValor(0);              
     }
 
     const handleDelete = async (id) => {
-        // await deletePerson(id);
-        // await getAllPeople();
-        // setOpen(false);
+        await deleteIndicator(id);
+        await getAllIndicators();
+        setOpen(false);
     }
 
     const handleCancel = () => {
-        // setEditing(false);
-        // setName("");
-        // setAge(0);   
-        // setStructure("");   
+        setEditing(false);
+        setIndicador("");
+        setValor(0);    
     }
 
     const handleEdit = (row) => {
-        // setId(row.id);
-        // setName(row.nome);
-        // setAge(row.idade);    
-        // setEditing(true);
-        // if(listPeople && listStructures) {
-        //     const result = (listStructures.find(structure => structure.id === row.estruturaId));
-        //     console.log(result);
-        //     if(result === undefined) setStructure("");
-        //     else setStructure(result.id);        
-        // }        
+        setIndicador(row.nome);
+        setValor(row.valor);  
+        setEditing(true);
     }  
 
     const saveEdit = async () => {
-        // let obj = {
-        //     id:id,
-        //     estruturaId: structure,
-        //     nome: name,
-        //     idade: age
-        // }
-        // await editPerson(obj);
-        // await getAllPeople();
-        // setEditing(false);
-        // setName("");
-        // setAge(0);   
-        // setStructure("");   
+        let obj = {
+            "id": id,
+            "idPessoa":id,
+            "nome": indicador,
+            "valor": valor
+        };
+        await editIndicator(obj);
+        await getAllIndicators();
+        setEditing(false);
+        setIndicador("");
+        setValor(0); 
     }
 
 
@@ -106,22 +134,27 @@ function Indicators() {
                 handleSearch={handleSearch}
             />
             <AddIndicator
-                nome={nome}
+                adicionavel={adicionavel}
+                id={id}
+                nome={nomePerson}                
                 setIndicador={setIndicador}
-                Indicador={indicador}
+                indicador={indicador}
                 setValor={setValor}
                 valor={valor}
-                handleAdd={handleAdd}
-                adicionavel={adicionavel}
+                editing={editing}
+                handleAdd={handleAdd}  
+                handleCancel={handleCancel}                
+                saveEdit={saveEdit}                
             />
             <TableIndicators
+                indicPerson={indicPerson}
                 adicionavel={adicionavel}
-                indicadores={indicadores}
-                handleOpen={handleOpen}
-                handleClose={handleClose}
+                handleOpen={handleOpen}                
+                handleClose={handleClose}                
                 open={open}
-                handleDelete={handleDelete}
                 handleEdit={handleEdit}
+                handleDelete={handleDelete}
+                
             />
         </>
     );
