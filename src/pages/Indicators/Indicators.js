@@ -1,6 +1,6 @@
 import {useState,useEffect} from "react";
 import {getPerson} from "../../api/peopleApi";
-import {getIndicators,addIndicator,deleteIndicator,editIndicator} from "../../api/indicatorsApi"
+import {getIndicators,getIndPerson,addIndicator,deleteIndicator,editIndicator} from "../../api/indicatorsApi"
 
 import Header from "../../components/Header/Header";
 import SearchID from "../../components/SearchID/SearchID";
@@ -26,14 +26,12 @@ function Indicators() {
     const[indicador,setIndicador] = useState("");
     const[valor,setValor] = useState(0);
     const [open, setOpen] = useState(false);
+    const[idIndicator,setIdIndicator] = useState("");
 
     const getOnePerson = async (id) => {
         const register = await getPerson(id);
-        if(register) {
-            setPerson(register);  
-            return register;  
-        }    
-        else return null;
+        if(register) setPerson(register);  
+        return register;    
     }; 
 
     const getAllIndicators = async (id) => {
@@ -42,14 +40,10 @@ function Indicators() {
         return allIndicators;
     }
 
-    const getIndicatorsPerson = () => {
-        let  indicatorPerson = [];
-        for(let i = 0; i < indicadores.length; i++) {           
-            if(Number(indicadores[i].idPessoa) === Number(id)) {
-                indicatorPerson.push(indicadores[i]);
-            }
-        }
-        setIndicPerson(indicatorPerson);
+    const getAllIndPerson = async (id) => {
+        const indicators = await getIndPerson(id);
+        if(indicators) setIndicPerson(indicators);
+        return indicators;
     }
 
     useEffect(() => {
@@ -72,8 +66,7 @@ function Indicators() {
             setAdicionavel(false);
         }
         else {
-            await getAllIndicators();
-            getIndicatorsPerson();
+            await getAllIndPerson(id);
             setNomePerson(result.nome);
             setAdicionavel(true);
         }  
@@ -81,15 +74,16 @@ function Indicators() {
 
     const handleAdd = async(objectIndicator) => {
         await addIndicator(objectIndicator);
-        await getAllIndicators();
+        await getAllIndPerson(id);
+
         setEditing(false);
         setIndicador("");
         setValor(0);              
     }
 
-    const handleDelete = async (id) => {
-        await deleteIndicator(id);
-        await getAllIndicators();
+    const handleDelete = async (idIndicator) => {
+        await deleteIndicator(idIndicator);
+        await getAllIndPerson(id);
         setOpen(false);
     }
 
@@ -100,6 +94,7 @@ function Indicators() {
     }
 
     const handleEdit = (row) => {
+        setIdIndicator(row.id);
         setIndicador(row.nome);
         setValor(row.valor);  
         setEditing(true);
@@ -107,13 +102,13 @@ function Indicators() {
 
     const saveEdit = async () => {
         let obj = {
-            "id": id,
+            "id": idIndicator,
             "idPessoa":id,
             "nome": indicador,
             "valor": valor
         };
         await editIndicator(obj);
-        await getAllIndicators();
+        await getAllIndPerson(id);
         setEditing(false);
         setIndicador("");
         setValor(0); 

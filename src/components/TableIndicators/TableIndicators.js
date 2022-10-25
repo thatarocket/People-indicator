@@ -6,6 +6,10 @@ function TableIndicators(props) {
 
     const columns = [
         { 
+            field: 'id', 
+            hide: true 
+        },
+        { 
             "field": "nome", 
             "headerName": "Indicador",
             "width": 180 

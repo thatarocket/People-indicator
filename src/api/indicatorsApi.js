@@ -5,6 +5,11 @@ const getIndicators = async () => {
     return response.data;
 }
 
+const getIndPerson = async (id) => {
+    const response = await api.get('/indicators', {params: {idPessoa: id}});
+    return response.data;
+}
+
 const addIndicator = async (request) => {
     await api.post('/indicators', request);
 }
@@ -18,4 +23,4 @@ const editIndicator = async (indicatorToEdit) => {
 }
 
 
-export {getIndicators,addIndicator,deleteIndicator,editIndicator};
+export {getIndicators,getIndPerson,addIndicator,deleteIndicator,editIndicator};
