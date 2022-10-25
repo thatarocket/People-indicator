@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 function AddIndicator (props) {
 
     let objIndicator = {
-        "idPessoa":props.id,
+        "idPessoa": Number(props.id),
         "nome": props.indicador,
         "valor": props.valor
     }; 

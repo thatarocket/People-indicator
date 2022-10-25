@@ -19,13 +19,10 @@ function Indicators() {
     const[adicionavel,setAdicionavel] = useState(false);
 
     //indicadores
-    const[indicadores,setIndicadores] = useState([]);
-    
+    const[indicadores,setIndicadores] = useState([]);    
     const[editing,setEditing] = useState(false); 
 
-    //TableIndicator
-    
-    
+    //TableIndicator   
     const[indicador,setIndicador] = useState("");
     const[valor,setValor] = useState(0);
     const [open, setOpen] = useState(false);
@@ -43,6 +40,16 @@ function Indicators() {
         const allIndicators = await getIndicators();
         if(allIndicators) setIndicadores(allIndicators);
         return allIndicators;
+    }
+
+    const getIndicatorsPerson = () => {
+        let  indicatorPerson = [];
+        for(let i = 0; i < indicadores.length; i++) {           
+            if(Number(indicadores[i].idPessoa) === Number(id)) {
+                indicatorPerson.push(indicadores[i]);
+            }
+        }
+        setIndicPerson(indicatorPerson);
     }
 
     useEffect(() => {
@@ -65,18 +72,8 @@ function Indicators() {
             setAdicionavel(false);
         }
         else {
-            const idNumber = parseInt(id);
-            const indicadores = await getAllIndicators();
-            let indicPerson = []; 
-
-            if(indicadores) {
-                for(let i = 0; i < indicadores.length; i++) {           
-                    if(indicadores[i].idPessoa === idNumber) {
-                        indicPerson.push(indicadores[i]);
-                    }
-                }
-            }
-            setIndicPerson(indicPerson);
+            await getAllIndicators();
+            getIndicatorsPerson();
             setNomePerson(result.nome);
             setAdicionavel(true);
         }  

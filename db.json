@@ -134,12 +134,6 @@
       "idPessoa": 4,
       "nome": "Faturamento",
       "valor": 60
-    },
-    {
-      "idPessoa": "3",
-      "nome": "teste",
-      "valor": "1",
-      "id": 13
     }
   ]
 }
