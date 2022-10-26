@@ -82,12 +82,6 @@
       "valor": 30
     },
     {
-      "id": 4,
-      "idPessoa": "4",
-      "nome": "Disponibilidade",
-      "valor": "51"
-    },
-    {
       "id": 5,
       "idPessoa": 2,
       "nome": "Disponibilidade",
@@ -102,8 +96,8 @@
     {
       "id": 7,
       "idPessoa": "3",
-      "nome": "Atividade 2",
-      "valor": "31"
+      "nome": "Atividade",
+      "valor": "30"
     },
     {
       "id": 8,
@@ -114,25 +108,25 @@
     {
       "id": 9,
       "idPessoa": "3",
-      "nome": "Faturamento a",
+      "nome": "Faturamento",
       "valor": "56"
     },
     {
-      "id": 10,
-      "idPessoa": 4,
-      "nome": "Atividade",
-      "valor": 40
-    },
-    {
-      "id": 11,
       "idPessoa": 4,
       "nome": "Disponibilidade",
-      "valor": 50
+      "valor": "80",
+      "id": 10
     },
     {
-      "idPessoa": 3,
-      "nome": "teste",
-      "valor": 0,
+      "idPessoa": 4,
+      "nome": "Faturamento",
+      "valor": "90",
+      "id": 11
+    },
+    {
+      "idPessoa": 4,
+      "nome": "Atividades",
+      "valor": "3",
       "id": 12
     }
   ]

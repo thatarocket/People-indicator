@@ -29,21 +29,36 @@ function Indicators() {
     const[idIndicator,setIdIndicator] = useState("");
 
     const getOnePerson = async (id) => {
-        const register = await getPerson(id);
-        if(register) setPerson(register);  
-        return register;    
+        try {
+            const register = await getPerson(id);
+            setPerson(register);  
+            return register;
+        }
+        catch (error) {
+            return null;    
+        }
     }; 
 
     const getAllIndicators = async (id) => {
-        const allIndicators = await getIndicators();
-        if(allIndicators) setIndicadores(allIndicators);
-        return allIndicators;
+        try {
+            const allIndicators = await getIndicators();
+            setIndicadores(allIndicators);
+            return allIndicators;
+        }
+        catch(error) {
+            return null;
+        }        
     }
 
     const getAllIndPerson = async (id) => {
-        const indicators = await getIndPerson(id);
-        if(indicators) setIndicPerson(indicators);
-        return indicators;
+        try {
+            const indicators = await getIndPerson(id);
+            setIndicPerson(indicators);
+            return indicators;
+        }
+        catch(error) {
+            return null;
+        }
     }
 
     useEffect(() => {
