@@ -10,8 +10,14 @@ function Structures(props) {
     const [structures, setStructures] = useState([]);
 
     const getAllStructures = async () => {
-        const allStructures = await getStructures();
-        if(allStructures) setStructures(allStructures);
+        try {
+            const allStructures = await getStructures();
+            setStructures(allStructures);
+            return allStructures;
+        }
+        catch {
+            return null;
+        }
     };   
     
     useEffect(() => {         
@@ -53,7 +59,7 @@ function Structures(props) {
             />
             <Box sx={{ height: 400, width: '100%' }}>
                 <DataGrid
-                    style={{backgroundColor:'white'}}
+                    style={{backgroundColor:'white',width:'80%',margin:'20px auto'}}
                     rows={structures}
                     columns={columns}
                 />

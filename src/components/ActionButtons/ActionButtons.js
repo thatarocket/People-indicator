@@ -14,15 +14,13 @@ function ActionButtons (props) {
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        width: 400,
-        bgcolor: 'background.paper',
-        border: '2px solid #000',
-        boxShadow: 24,
+        width: '400',
+        backgroundColor: 'white',
         p: 4
     };
 
     return (
-        <>
+        <>  
             <Button 
                 variant="outlined" 
                 startIcon={<DeleteIcon />}

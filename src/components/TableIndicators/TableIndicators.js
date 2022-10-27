@@ -39,7 +39,7 @@ function TableIndicators(props) {
             {props.adicionavel && (
                 <Box sx={{ height: 400, width: '100%' }}>
                     <DataGrid
-                        style={{backgroundColor:'white'}}
+                        style={{backgroundColor:'white',width:'80%',margin:'20px auto'}}
                         rows={props.indicPerson}
                         columns={columns}
                     />

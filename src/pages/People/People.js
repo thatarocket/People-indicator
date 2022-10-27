@@ -20,12 +20,25 @@ function People(props) {
     const [listStructures, setStructures] = useState([]);
 
     const getAllStructures = async () => {
-        const allStructures = await getStructures();
-        if(allStructures) setStructures(allStructures);
+        try {
+            const allStructures = await getStructures();
+            setStructures(allStructures);
+            return allStructures;
+        }
+        catch {
+            return null;
+        }
+        
     };    
     const getAllPeople = async () => {
-        const allRegisters = await getPeople();
-        if(allRegisters) setPeople(allRegisters);
+        try {
+            const allRegisters = await getPeople();
+            setPeople(allRegisters);
+            return allRegisters;
+        }
+        catch {
+            return null;
+        }
     }; 
 
     useEffect(() => {   

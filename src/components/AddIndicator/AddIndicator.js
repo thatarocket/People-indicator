@@ -13,21 +13,19 @@ function AddIndicator (props) {
     return(
         <>  
             {props.adicionavel && (
-                <h3>{props.nome}</h3>
+                <h3 style={{backgroundColor:'white',width:'80%',margin:'20px auto'}}>{props.nome}</h3>
             )}
-            <Grid container sx={{backgroundColor: 'white', padding:'5px', alignItems:'center',textAlign:'center'}}>
-                <Grid item xs={6}>
-                    {props.adicionavel && (
+            {props.adicionavel && (
+                <Grid container sx={{backgroundColor: 'white', padding:'5px', alignItems:'center',textAlign:'center',width:'80%',margin:'20px auto'}}>
+                    <Grid item xs={6}>
                         <TextField
                             id="demo-helper-text-misaligned"
                             label="Indicador"
                             value={props.indicador}
                             onChange={event => props.setIndicador(event.target.value)}
                         />
-                    )}
-                </Grid>
-                <Grid item xs={3}>
-                    {props.adicionavel && (
+                    </Grid>
+                    <Grid item xs={3}>
                         <TextField
                             id="demo-helper-text-misaligned"
                             label="Valor"
@@ -35,39 +33,38 @@ function AddIndicator (props) {
                             type="number"
                             onChange={event => props.setValor(event.target.value)}
                         />
-                    )}
-                </Grid>
-                <Grid item xs={3} style={{textAlign:'center'}}>
-                    {props.adicionavel && !props.editing && (
-                        <Button 
-                            variant="outlined"
-                            size="large"
-                            onClick={() => props.handleAdd(objIndicator)}
-                        >
-                            Adicionar
-                        </Button>
-                    )}
-                    {props.editing && (
-                        <>
+                    </Grid>
+                    <Grid item xs={3} style={{textAlign:'center'}}>
+                        {!props.editing && (
                             <Button 
-                                size="large" 
-                                variant="outlined" 
-                                onClick={props.handleCancel}
+                                variant="outlined"
+                                size="large"
+                                onClick={() => props.handleAdd(objIndicator)}
                             >
-                                Cancelar
-                            </Button>   
-                            <Button 
-                                size="large" 
-                                variant="outlined" 
-                                onClick={() => props.saveEdit()}
-                            >
-                                Salvar
-                            </Button> 
-                        </>
-                        
-                    )} 
+                                Adicionar
+                            </Button>
+                        )}
+                        {props.editing && (
+                            <>
+                                <Button 
+                                    size="large" 
+                                    variant="outlined" 
+                                    onClick={props.handleCancel}
+                                >
+                                    Cancelar
+                                </Button>   
+                                <Button 
+                                    size="large" 
+                                    variant="outlined" 
+                                    onClick={() => props.saveEdit()}
+                                >
+                                    Salvar
+                                </Button> 
+                            </>
+                        )} 
+                    </Grid>
                 </Grid>
-            </Grid>
+            )}
         </>
     );
 }

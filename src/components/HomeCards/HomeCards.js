@@ -1,25 +1,45 @@
 import Card from '@mui/material/Card';
-// import CardContent from '@mui/material/CardContent';
-
 import { Link } from "react-router-dom";
 
 function HomeCards() {
-    return(
-        <>
-            <Card sx={{width:'80%',margin:' 20px auto',border:'40', }}>
-                <Link to="/People" style={{ textDecoration: 'none', display: 'block',color:'black',width:'100%' }}>
-                    Pessoas
-                </Link>
-            </Card>
 
-            <Card sx={{width:'80%',margin:' 20px auto',border:'0'}}>
-                <Link to="/Structures" style={{ textDecoration: 'none', display: 'block',color:'black' ,width:'100%', borderBottom:'40px' }}>
+    const cardStyle = {
+        width:'80%',
+        margin:' 20px auto',
+        border:'40',
+        height: '20%',
+        alignItems: 'center',
+        
+    };
+
+    const linkStyle = {
+        textDecoration:'none',
+        color:'black',
+        display:'block',
+        width:'100%',
+        fontFamily: 'Roboto',
+        fontWeight: '700',
+        textAlign: 'center',
+        padding: '30px 10px',
+        fontSize: '30px',
+    };
+    
+    return(
+        <>           
+            <Card style={cardStyle}>
+                <Link to="/Structures" style={linkStyle}>
                     Estruturas
                 </Link>
             </Card>
 
-            <Card sx={{width:'80%',margin:' 20px auto',border:'0'}}>
-                <Link to="/Indicators" style={{ textDecoration: 'none', display: 'block',color:'black',width:'100%', borderBottom:'40px' }}>
+            <Card style={cardStyle}>
+                <Link to="/People" style={linkStyle}>
+                    Pessoas
+                </Link>
+            </Card>
+
+            <Card style={cardStyle}>
+                <Link to="/Indicators" style={linkStyle}>
                     Indicadores
                 </Link>
             </Card>

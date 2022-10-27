@@ -16,11 +16,37 @@ function AddPerson(props) {
         idade: props.age
     };
 
+    const containerStyle = {
+        backgroundColor: 'white', 
+        padding:'5px', 
+        width:'80%',
+        margin:'20px auto'
+    }
+    const gridItemStyle = {
+        margin:'5px',
+        paddingLeft:'0px',
+        paddingRight:'0px'
+    }
+
+    const gridBtnStyle = {
+        margin: '0',
+        alignItems: 'center',
+        padding: '10px'
+    }
+    
+    const btnAddStyle = {
+        padding: '10px 5px',
+        margin: '0',
+        alignItems: 'center',
+        width: '100%',
+        height: '50px'
+
+    }
+
     return(
         <>  
-            <Grid container sx={{backgroundColor: 'white',margin: '10px 0px', padding:'5px'}}>
-
-                <Grid item xs={3}>
+            <Grid container style={containerStyle}>
+                <Grid item xs={3} style={gridItemStyle}>
                     <TextField
                         id="outlined-basic"
                         className='initialInputs'
@@ -31,7 +57,7 @@ function AddPerson(props) {
                     />
                 </Grid>
 
-                <Grid item xs={3}>
+                <Grid item xs={3} style={gridItemStyle}>
                     <Box sx={{ minWidth: 120 }}>
                         <FormControl fullWidth>
                             <InputLabel id="demo-simple-select-label">Estruturas</InputLabel>
@@ -52,7 +78,7 @@ function AddPerson(props) {
                     </Box>
                 </Grid>
                     
-                <Grid item xs={3}>
+                <Grid item xs={3} style={gridItemStyle}>
                     <TextField
                         id="outlined-basic"
                         className='initialInputs'
@@ -64,12 +90,13 @@ function AddPerson(props) {
                     />
                 </Grid>
 
-                <Grid item xs={3}>
+                <Grid item xs={2} style={gridBtnStyle}>
                     {!props.editing && (
                         <Button 
                             size="large" 
                             className="btnAddPeople" 
                             variant="outlined" 
+                            style={btnAddStyle}
                             onClick={() => props.handleAdd(objPerson)}
                         >
                             Adicionar

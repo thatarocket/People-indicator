@@ -73,7 +73,6 @@ function Indicators() {
         setOpen(false);
     }
 
-    // PROBLEMA: Dando erro quando não encontra o id
     const handleSearch = async (id) => { 
         const result = await getOnePerson(id);
         if(!result) {
